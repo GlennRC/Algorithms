@@ -81,18 +81,13 @@ GenSubSets(items[0..n])
 
 
 def GenAllSub(a, n):
-    print("top n={}".format(n))
 
     if n == 0:
-        print('end')
-        print()
-
         return [[], [a[n]]]
 
     smaller = GenAllSub(a, n-1)
-
     for sub in smaller:
-        print(sub)
+        sub.append
 
     return smaller
 

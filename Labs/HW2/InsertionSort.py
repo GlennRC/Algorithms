@@ -81,21 +81,20 @@ GenSubSets(items[0..n])
 
 
 def GenAllSub(a, n):
-
     if n == 0:
         return [[], [a[n]]]
-
     smaller = GenAllSub(a, n-1)
+    temp = [sub.copy() for sub in smaller]
     for sub in smaller:
-        sub.append
-
+        sub.append(a[n])
+    smaller.extend(temp)
     return smaller
 
 
 def main():
     a = ['A', 'B', 'C']
-
-    print(GenAllSub(a, len(a)))
+    print()
+    print(GenAllSub(a, len(a)-1))
 
 
 if __name__ == "__main__":

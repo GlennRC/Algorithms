@@ -14,47 +14,6 @@ def insertion_sort(a):
             a[j+1] = a[j]
             j -= 1
         a[j+1] = v
-
-
-'''
-GenSubSets(items[0..n])
-    if n = 0
-        return subsets <- { {}, {items[0]}}
-    else
-        smaller <- GenSubSets(items[0..n-1])
-        for each subset in smaller
-            subset.append(subset.append(subset))
-            subset.append(subset U items[n-1])
-'''
-
-
-def bottom_up(a, n):
-    print("top n={}".format(n))
-    if n == 0:
-        print('end')
-        print()
-        return [[a[n]]]
-    else:
-        smaller = bottom_up(a, n-1)
-
-        print("else n={}".format(n))
-        print("before extend= {}".format(smaller))
-        smaller.extend(smaller[:len(n)])
-        smaller = [sub.copy() for sub in smaller]
-
-        print("after extend= {}".format(smaller))
-
-        print('permute')
-
-        for i in range(len(smaller)):
-            print("i={}".format(i))
-            print("smaller = {}".format(smaller))
-            print("smaller before insert = {}".format(smaller[i]))
-            smaller[i].insert(i, a[n])
-            print("smaller after insert = {}".format(smaller[i]))
-            print()
-    return smaller
-
 def helper_mobile(a, i):
     m = -1
     if a[i][1] == '<-':
@@ -101,8 +60,6 @@ def trotter(n):
         l.append(a.copy())
         m = get_mobile(a)
     return l
-
-
 def get_consecutive(l):
     largest = -1
     for i in range(1, len(l)):
@@ -111,36 +68,40 @@ def get_consecutive(l):
                 largest = i
     return largest
 
+'''
+GenSubSets(items[0..n])
+    if n = 0
+        return subsets <- { {}, {items[0]}}
+    else
+        smaller <- GenSubSets(items[0..n-1])
+        for each subset in smaller
+            subset.append(subset.append(subset))
+            subset.append(subset U items[n-1])
+'''
 
-def lexi_perm(n):
-    perm = []
-    p = [i+1 for i in range(n)]
-    perm.append(p)
-    while get_consecutive(p):
 
+def GenAllSub(a, n):
+    print("top n={}".format(n))
 
+    if n == 0:
+        print('end')
+        print()
 
+        return [[], [a[n]]]
 
+    smaller = GenAllSub(a, n-1)
 
+    for sub in smaller:
+        print(sub)
 
+    return smaller
 
 
 def main():
     a = ['A', 'B', 'C']
 
-    '''
-    print(id(a))
-    print(id(a.copy))
-    '''
+    print(GenAllSub(a, len(a)))
 
-    b = [(1, '<-'), (2, '<-'), (3, '<-')]
-    n = 3
-    perm = trotter(n)
-    pretty_print(perm)
-
-    c = [1,2,3]
-    print()
-    print(get_consecutive(c))
 
 if __name__ == "__main__":
     main()

@@ -26,6 +26,7 @@ def lomuto(a, l, r):
 
 
 def quick_sort(a, l, r):
+
     if l < r:
         s = lomuto(a, l, r)
         quick_sort(a, l, s-1)

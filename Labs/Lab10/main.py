@@ -44,6 +44,7 @@ def SelectionSort(A):
         A[f], A[m] = A[m], A[f]
     return A
 
+
 def calcTime(foo, args):
     start = time.time()
     foo(*args)
